@@ -1,12 +1,19 @@
 import express from 'express';
 // it's the same as this, in new node versions 
-// don't forget to add module to the package.json
 // const express = require('express')
+// don't forget to add module to the package.json
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+//not including js at the end crashed it, so 
+//don't forget in node you need to unlike react
+import postRoutes from './routes/posts.js'
+
 const app = express();
+
+//now it'll get posts in front in the urlas 'localhost:5000/posts/something'( / in mine)
+app.use('/posts', postRoutes)
 
 app.use(bodyParser.json({  limit:"30mb", extended:true }));
 app.use(bodyParser.urlencoded({ limit:"30mb", extended:true }));
