@@ -12,12 +12,12 @@ import postRoutes from './routes/posts.js'
 
 const app = express();
 
-//now it'll get posts in front in the urlas 'localhost:5000/posts/something'( / in mine)
-app.use('/posts', postRoutes)
-
 app.use(bodyParser.json({  limit:"30mb", extended:true }));
 app.use(bodyParser.urlencoded({ limit:"30mb", extended:true }));
 app.use(cors());
+
+//now it'll get posts in front in the urlas 'localhost:5000/posts/something'( / in mine)
+app.use('/posts', postRoutes)
 
 const port = process.env.port || 5000; 
 console.log(process.env.URI)
