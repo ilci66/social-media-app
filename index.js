@@ -5,7 +5,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-
+import dotenv from 'dotenv';
+dotenv.config();
 //not including js at the end crashed it, so 
 //don't forget in node you need to unlike react
 import postRoutes from './routes/posts.js'
@@ -19,12 +20,9 @@ app.use(cors());
 //now it'll get posts in front in the urlas 'localhost:5000/posts/something'( / in mine)
 app.use('/posts', postRoutes)
 
-const port = process.env.port || 5000; 
-console.log(process.env.URI)
-// use this for now 
-const uri = "mongodb+srv://ilker:123asd123@learningmongodb.duuyu.mongodb.net/database6?retryWrites=true&w=majority"
-// this returns a promise actually so you can chain a then and a catch
-mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology:true})
+const port = process.env.PORT || 5000; 
+
+mongoose.connect(process.env.URI, {useNewUrlParser:true, useUnifiedTopology:true})
   .then(() => app.listen(port, () => console.log(`Server running on port ${port}`)))
   .catch((error) => console.log(error.message))
 
