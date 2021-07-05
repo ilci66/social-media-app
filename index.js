@@ -19,7 +19,9 @@ app.use(cors());
 
 //now it'll get posts in front in the urlas 'localhost:5000/posts/something'( / in mine)
 app.use('/posts', postRoutes)
-
+app.get('/', (req, res) => {
+  res.send('welcome to Memories API')
+})
 const port = process.env.PORT || 5000; 
 
 mongoose.connect(process.env.URI, {useNewUrlParser:true, useUnifiedTopology:true})
